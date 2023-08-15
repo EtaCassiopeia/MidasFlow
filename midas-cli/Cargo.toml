@@ -1,0 +1,18 @@
+[package]
+name = "midas-cli"
+version = "0.1.0"
+edition = "2021"
+default-run = "midas"
+authors = ["Mohsen Zainalpour <zainalpour@gmail.com>"]
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+[package.metadata.deb]
+name = "midas"
+
+[dependencies]
+midas-types = { path = "../midas-types" }
+
+[[bin]]
+edition = "2021"
+name = "midas"
+path = "src/main.rs"
