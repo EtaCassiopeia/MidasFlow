@@ -13,6 +13,8 @@ pub fn init_midas(config_paths: Vec<String>) -> Result<Midas, CliError> {
     let runtime = tokio::runtime::Runtime::new().map_err(CliError::FailedToCreateTokioRuntime)?;
     let config = runtime.block_on(load_config(config_paths))?;
 
+    println!("config: {:?}", config);
+
     Ok(Midas::new(config, Arc::new(runtime)))
 }
 

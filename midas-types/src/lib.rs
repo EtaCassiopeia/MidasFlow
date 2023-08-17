@@ -3,3 +3,5 @@ pub use thiserror;
 pub use tracing;
 pub mod errors;
 pub mod models;
+
+pub mod ingestion_types;
