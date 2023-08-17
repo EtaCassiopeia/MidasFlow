@@ -12,9 +12,9 @@ pub struct Connection {
 #[derive(Serialize, Deserialize, Eq, PartialEq, Clone, ::prost::Oneof, Hash)]
 pub enum ConnectionConfig {
     #[prost(message, tag = "1")]
-    /// In yaml, present as tag: `!ObjectStore`
+    /// In yaml, present as tag: `!LocalStorage`
     LocalStorage(LocalStorage),
     #[prost(message, tag = "2")]
-    /// In yaml, present as tag: `!ObjectStore`
+    /// In yaml, present as tag: `!S3Storage`
     S3Storage(S3Storage),
 }
