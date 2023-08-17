@@ -6,7 +6,10 @@ use std::{
 
 use midas_types::tracing::error;
 
+pub mod cli;
+pub mod engine;
 pub mod errors;
+pub mod shutdown;
 
 pub fn set_panic_hook() {
     panic::set_hook(Box::new(move |panic_info| {
@@ -31,4 +34,16 @@ pub fn set_panic_hook() {
 
         process::exit(1);
     }));
+}
+
+use shutdown::ShutdownSender;
+
+pub fn set_ctrl_handler(shutdown_sender: ShutdownSender) {
+    let mut shutdown = Some(shutdown_sender);
+    ctrlc::set_handler(move || {
+        if let Some(shutdown) = shutdown.take() {
+            shutdown.shutdown()
+        }
+    })
+    .expect("Error setting Ctrl-C handler");
 }
